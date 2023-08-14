@@ -1,5 +1,7 @@
 # StickmanRunner
 Simple runner game. Made with Unity 2021.
+#Important
+Repository doesnt contain "Library" folder because it is too big.
 
 # Mechanics
 Cube pickup - player can pickup cobes on the map.
