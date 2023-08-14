@@ -1,7 +1,10 @@
 # StickmanRunner
 Simple runner game. Made with Unity 2021.
 #Important
-Repository doesnt contain "Library" folder because it is too big.
+Repository doesnt contain "Library" folder.
+
+# Instalation
+You need at least android 5.0 to play this game. You can find .apk file in 
 
 # Mechanics
 Cube pickup - player can pickup cobes on the map.

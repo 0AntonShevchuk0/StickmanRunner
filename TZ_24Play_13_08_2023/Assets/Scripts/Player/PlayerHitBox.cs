@@ -4,12 +4,12 @@ namespace Player
 {
     public class PlayerHitBox : MonoBehaviour
     {
-        private PlayerCubesController _playerCubesController;
+        private PlayerProgressController _playerProgressController;
 
         private void Awake()
         {
-            _playerCubesController = GetComponentInParent<PlayerCubesController>();
-            if (_playerCubesController == null)
+            _playerProgressController = GetComponentInParent<PlayerProgressController>();
+            if (_playerProgressController == null)
             {
                 Debug.LogError("Could not find PlayerCubesController");
             }
@@ -19,7 +19,7 @@ namespace Player
         {
             if (other.CompareTag("Pickup"))
             {
-                _playerCubesController.PickupCube();
+                _playerProgressController.PickupCube();
                 Destroy(other.gameObject);
             }
         }

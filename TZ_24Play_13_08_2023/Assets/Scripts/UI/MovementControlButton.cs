@@ -10,7 +10,6 @@ namespace UI
 
         [SerializeField] private PlayerMovement playerMovement;
         
-    
         public void OnPointerMove(PointerEventData eventData)
         {
             playerMovement.SwitchLine(lineNumber);

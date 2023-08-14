@@ -4,13 +4,17 @@ using System.Collections.Generic;
 namespace Player
 {
     [RequireComponent(typeof(PlayerMovement))]
-    public class PlayerCubesController : MonoBehaviour
+    public class PlayerProgressController : MonoBehaviour
     {
+        [Header("Cubes settings")]
         [SerializeField] private GameObject playerCubePrefab;
         [SerializeField] private Transform cubesContainer;
-        [SerializeField] [Range(1, 25)] private int maxCubes;
+        [SerializeField] [Range(1, 25)] private int maxCubes = 10;
         [SerializeField] private PlayerCube[] startCubes;
+
+        [Header("Effects settings")]
         [SerializeField] private ParticleSystem stackEffect;
+        [SerializeField] private GameObject collectCubeText;
 
         private PlayerMovement _playerMovement;
         
@@ -35,7 +39,7 @@ namespace Player
         {
             if (_cubes.Count > maxCubes) return;
             
-            _playerMovement.LiftStickman();
+            _playerMovement.Jump();
 
             GameObject newCube = Instantiate(playerCubePrefab, cubesContainer);
             _cubes.Add(newCube.GetComponentInChildren<PlayerCube>());
@@ -46,8 +50,11 @@ namespace Player
             {
                 stackEffect.Stop();
             }
-            stackEffect.transform.localPosition = cubePosition;
+            stackEffect.transform.position = transform.position + cubePosition;
             stackEffect.Play();
+
+            GameObject newPointsTextEffect = Instantiate(collectCubeText, transform);
+            newPointsTextEffect.transform.localPosition = cubePosition;
         }
 
         public void RemoveCube(PlayerCube cube)
@@ -64,6 +71,7 @@ namespace Player
         private void LoseSequence()
         {
             _playerMovement.StopMove();
+            StartCoroutine(GameController.Instance.ShakeCamera());
         }
     }
 }

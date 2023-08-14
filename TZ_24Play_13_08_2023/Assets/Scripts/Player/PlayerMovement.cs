@@ -14,27 +14,39 @@ namespace Player
         [Header("Stickman settings")]
         [SerializeField] private Transform stickman;
         [Tooltip("Lift height after cube pickup")]
-        [SerializeField] [Range(0f, 10f)] private float stickmanLiftHeight = 1.5f;
+        [SerializeField] [Range(0f, 10f)] private float JumpHeight = 1.5f;
         
         [Header("Initialization settings")]
         [SerializeField] [Range(0, 10)] private int currentLine = 2;
 
-        private bool _isMoving = true;
+        private Animator _stickmanAnimator;
+        
+        private bool _isMoving;
         private bool _isMovingBetweenLines;
 
+        private void Awake()
+        {
+            _stickmanAnimator = stickman.GetComponent<Animator>();
+        }
+        
         private void Update()
         {
             MoveForward();
         }
 
-        public void LiftStickman()
+        public void StartMove()
         {
-            stickman.position += Vector3.up * stickmanLiftHeight;
+            _isMoving = true;
+        }
+
+        public void Jump()
+        {
+            stickman.position += Vector3.up * JumpHeight;
+            _stickmanAnimator.SetTrigger("Jump");
         }
         
         public void SwitchLine(int line)
         {
-            
             if (!_isMoving ||
                 _isMovingBetweenLines ||
                 line < 0 ||
@@ -46,6 +58,12 @@ namespace Player
 
             StartCoroutine(MoveBetweenLines((line - currentLine) * GameController.Instance.LineWidth));
             currentLine = line;
+        }
+
+        public void StopMove()
+        {
+            _isMoving = false;
+            _stickmanAnimator.SetTrigger("Fall");
         }
         
 
@@ -62,6 +80,7 @@ namespace Player
             transform.position = new Vector3(newXPosition, currentPosition.y, currentPosition.z);
         }
         
+        // Horizontal movement using linear interpolation
         private IEnumerator MoveBetweenLines(float offset)
         {
             _isMovingBetweenLines = true;
