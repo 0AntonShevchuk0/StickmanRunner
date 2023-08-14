@@ -4,7 +4,7 @@ Simple runner game. Made with Unity 2021.
 Repository doesnt contain "Library" folder.
 
 # Instalation
-You need at least android 5.0 to play this game. You can find .apk file in 
+You need at least android 5.0 to play this game. You can find .apk file in TZ_24Play_13_08_2023/Builds folder.
 
 # Mechanics
 Cube pickup - player can pickup cobes on the map.
