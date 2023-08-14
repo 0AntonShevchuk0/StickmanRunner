@@ -10,6 +10,7 @@ namespace Player
         [SerializeField] private Transform cubesContainer;
         [SerializeField] [Range(1, 25)] private int maxCubes;
         [SerializeField] private PlayerCube[] startCubes;
+        [SerializeField] private ParticleSystem stackEffect;
 
         private PlayerMovement _playerMovement;
         
@@ -40,11 +41,29 @@ namespace Player
             _cubes.Add(newCube.GetComponentInChildren<PlayerCube>());
             Vector3 cubePosition = Vector3.up * (_cubes.Count - 1);
             newCube.transform.localPosition = cubePosition;
+
+            if (stackEffect.isPlaying)
+            {
+                stackEffect.Stop();
+            }
+            stackEffect.transform.localPosition = cubePosition;
+            stackEffect.Play();
         }
 
-        public void RemoveCube()
+        public void RemoveCube(PlayerCube cube)
         {
-            
+            cube.Remove();
+            _cubes.Remove(cube);
+
+            if (_cubes.Count == 0)
+            {
+                LoseSequence();
+            }
+        }
+
+        private void LoseSequence()
+        {
+            _playerMovement.StopMove();
         }
     }
 }
