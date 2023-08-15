@@ -48,7 +48,6 @@
      <Compile Include="Assets\Scripts\UI\MovementControlButton.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\Level\LevelGenerationTrigger.cs" />
-     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
      <Compile Include="Assets\Scripts\Level\SelfDestruct.cs" />
      <Compile Include="Assets\Scripts\Level\Pickup.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHitBox.cs" />
@@ -93,11 +92,8 @@
      <Folder Include="Assets\TextMesh Pro\Shaders" />
      <Folder Include="Assets\Prefabs\Level" />
      <Folder Include="Assets\TextMesh Pro\Resources\Style Sheets" />
-     <Folder Include="Assets\TutorialInfo\Scripts" />
      <Folder Include="Assets\TextMesh Pro\Fonts" />
-     <Folder Include="Assets\TutorialInfo\Icons" />
      <Folder Include="Assets\Shaders" />
-     <Folder Include="Assets\TutorialInfo" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <Folder Include="Assets\Models" />
      <Folder Include="Assets\Shape FX\Assets\Textures" />
